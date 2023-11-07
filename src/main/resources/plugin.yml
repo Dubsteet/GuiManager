@@ -1,0 +1,4 @@
+name: GuiManager
+version: '${project.version}'
+main: de.dubsteet.guimanager.GuiManager
+api-version: '1.20'
