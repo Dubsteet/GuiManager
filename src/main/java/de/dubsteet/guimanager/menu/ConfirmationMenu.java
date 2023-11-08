@@ -1,6 +1,9 @@
 package de.dubsteet.guimanager.menu;
 
+import exceptions.MenuManagerException;
+import exceptions.MenuManagerNotSetupException;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class ConfirmationMenu extends Menu {
@@ -23,6 +26,30 @@ public abstract class ConfirmationMenu extends Menu {
         inventory.setItem(32, cancelItem);
         setFillerGlass();
     }
+
+    @Override
+    public boolean cancelAllClicks() {
+        return true;
+    }
+
+    @Override
+    public int getSlots() {
+        return 5*9;
+    }
+
+    @Override
+    public void handleMenu(InventoryClickEvent event) throws MenuManagerNotSetupException, MenuManagerException {
+        if(event.getCurrentItem() == null) return;
+        if (event.getCurrentItem().equals(confirmItem)) {
+            handleConfirm();
+        } else if (event.getCurrentItem().equals(cancelItem)) {
+            handleCancel();
+        }
+    }
+
+    public abstract void handleConfirm();
+
+    public abstract void handleCancel();
 
     public void setMessageItem(Material material) {
         this.confirmItem = makeItem(material, confirmationMessage);
