@@ -29,6 +29,11 @@ public abstract class PaginatedMenu extends Menu {
         super(playerMenuUtility);
     }
 
+    @Override
+    public int getSlots() {
+        return 54;
+    }
+
     /**
      * @return A list of the data being paginated. usually this is a list of items, but it can be anything
      */
