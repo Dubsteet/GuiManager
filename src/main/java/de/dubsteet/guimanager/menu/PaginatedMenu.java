@@ -30,7 +30,7 @@ public abstract class PaginatedMenu extends Menu {
     }
 
     /**
-     * @return A list of the data being paginated. usually this is a list of items but it can be anything
+     * @return A list of the data being paginated. usually this is a list of items, but it can be anything
      */
     public abstract List<?> getData();
 
@@ -93,7 +93,6 @@ public abstract class PaginatedMenu extends Menu {
         if (data != null && !data.isEmpty()) {
             for (int i = 0; i < getMaxItemsPerPage(); i++) {
                 index = getMaxItemsPerPage() * page + i;
-                System.out.println(index);
                 if (index >= data.size()) break;
                 if (data.get(index) != null) {
                     loopCode(data.get(index)); //run the code defined by the user

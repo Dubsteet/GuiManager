@@ -2,7 +2,6 @@ package de.dubsteet.guimanager.menu;
 
 import exceptions.MenuManagerException;
 import exceptions.MenuManagerNotSetupException;
-import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
