@@ -155,4 +155,13 @@ public abstract class PaginatedMenu extends Menu {
     public void changeCloseButton(ItemStack closeButton) {
         this.closeButton = closeButton;
     }
+
+    public void addObjectToNextFreeSlot(Object object) {
+        for (int i = 0; i < inventory.getSize()-1; i++) {
+            if(inventory.getItem(i) == null || inventory.getItem(i).getType().equals(Material.AIR)) {
+                inventory.setItem(i, (ItemStack) object);
+                break;
+            }
+        }
+    }
 }
