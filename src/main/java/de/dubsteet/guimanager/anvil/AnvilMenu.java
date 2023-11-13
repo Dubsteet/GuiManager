@@ -2,25 +2,21 @@ package de.dubsteet.guimanager.anvil;
 
 import de.dubsteet.guimanager.menu.Menu;
 import de.dubsteet.guimanager.menu.PlayerMenuUtility;
-import exceptions.MenuManagerException;
-import exceptions.MenuManagerNotSetupException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-public abstract class AnvilGUI extends Menu {
+public abstract class AnvilMenu extends Menu {
 
     protected PlayerMenuUtility playerMenuUtility;
     protected Inventory inventory;
     protected Player player;
-    public AnvilGUI(PlayerMenuUtility playerMenuUtility) {
+    public AnvilMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
         this.playerMenuUtility = playerMenuUtility;
+        player = playerMenuUtility.getOwner();
     }
 
     @Override
