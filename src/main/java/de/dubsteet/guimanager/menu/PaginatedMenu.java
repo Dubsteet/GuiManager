@@ -1,9 +1,12 @@
 package de.dubsteet.guimanager.menu;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -163,5 +166,32 @@ public abstract class PaginatedMenu extends Menu {
                 break;
             }
         }
+    }
+
+    public List<ItemStack> turnPlayerListToSkullItemList(List<Player> players) {
+        List<ItemStack> itemStacks = new ArrayList<>();
+        if(players == null || players.isEmpty()) return itemStacks;
+        for (Player player : players) {
+            ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD);
+            SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+            skullMeta.setOwningPlayer(player);
+            itemStack.setItemMeta(skullMeta);
+            itemStacks.add(itemStack);
+        }
+        return itemStacks;
+    }
+
+    public List<ItemStack> turnPlayerListToSkullItemList(List<Player> players, List<String> lore) {
+        List<ItemStack> itemStacks = new ArrayList<>();
+        if(players == null || players.isEmpty()) return itemStacks;
+        for (Player player : players) {
+            ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD);
+            SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+            skullMeta.setOwningPlayer(player);
+            skullMeta.setLore(lore);
+            itemStack.setItemMeta(skullMeta);
+            itemStacks.add(itemStack);
+        }
+        return itemStacks;
     }
 }
