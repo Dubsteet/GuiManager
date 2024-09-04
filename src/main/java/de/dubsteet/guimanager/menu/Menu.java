@@ -1,7 +1,9 @@
 package de.dubsteet.guimanager.menu;
 
-import exceptions.MenuManagerException;
-import exceptions.MenuManagerNotSetupException;
+import de.dubsteet.guimanager.exceptions.MenuManagerException;
+import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
+import de.dubsteet.guimanager.menu.enums.InventoryClickStatus;
+import de.dubsteet.guimanager.menu.items.ItemMapping;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -30,7 +32,7 @@ public abstract class Menu implements InventoryHolder {
 
     public abstract int getSlots();
 
-    public abstract boolean cancelAllClicks();
+    public abstract InventoryClickStatus allowAllClicks();
 
     public abstract void handleMenu(InventoryClickEvent event) throws MenuManagerNotSetupException, MenuManagerException;
 
@@ -91,6 +93,18 @@ public abstract class Menu implements InventoryHolder {
         itemMeta.setDisplayName(displayName);
         itemMeta.setLore(Arrays.asList(lore));
         item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    /**
+     * @param material    The material to base the ItemStack on
+     * @param displayName The display name of the ItemStack
+     * @param lore        The lore of the ItemStack
+     * @return The constructed ItemStack object
+     */
+    public ItemStack makeClickableItem(Material material, String displayName, String... lore) {
+        ItemStack item = makeItem(material, displayName, lore);
+        ItemMapping.addClickableAttribut(item, true);
         return item;
     }
 }

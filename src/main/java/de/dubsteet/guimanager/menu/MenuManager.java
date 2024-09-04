@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
-import exceptions.*;
+import de.dubsteet.guimanager.exceptions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

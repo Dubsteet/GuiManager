@@ -1,7 +1,8 @@
 package de.dubsteet.guimanager.menu;
 
-import exceptions.MenuManagerException;
-import exceptions.MenuManagerNotSetupException;
+import de.dubsteet.guimanager.exceptions.MenuManagerException;
+import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
+import de.dubsteet.guimanager.menu.enums.InventoryClickStatus;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,8 +26,8 @@ public abstract class ConfirmationMenu extends Menu {
     }
 
     @Override
-    public boolean cancelAllClicks() {
-        return true;
+    public InventoryClickStatus allowAllClicks() {
+        return InventoryClickStatus.DENIED;
     }
 
     @Override
