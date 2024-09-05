@@ -22,5 +22,20 @@ public class ItemMapping {
         return Boolean.TRUE.equals(container.get(ItemKeys.IS_CLICKABLE, PersistentDataType.BOOLEAN));
     }
 
+    public static void addUniqueId(ItemStack stack, String uniqueId) {
+        ItemMeta meta = stack.getItemMeta();
+        meta.getPersistentDataContainer().set(ItemKeys.UNIQUE_ID, PersistentDataType.STRING, uniqueId);
+        stack.setItemMeta(meta);
+    }
+
+    public static String getUniqueId(ItemStack stack) {
+        ItemMeta meta = stack.getItemMeta();
+        PersistentDataContainer container = meta.getPersistentDataContainer();
+        if (!container.has(ItemKeys.UNIQUE_ID, PersistentDataType.STRING)) {
+            return null;
+        }
+        return container.get(ItemKeys.UNIQUE_ID, PersistentDataType.STRING);
+    }
+
 
 }
