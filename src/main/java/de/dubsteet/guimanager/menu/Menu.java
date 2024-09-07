@@ -28,16 +28,36 @@ public abstract class Menu implements InventoryHolder {
         this.player = playerMenuUtility.getOwner();
     }
 
+    /**
+     * @return The name of the menu
+     */
     public abstract String getMenuName();
 
+    /**
+     * @return The amount of slots in the menu
+     */
     public abstract int getSlots();
 
+    /**
+     * @return Should the menu allow all clicks?
+     */
     public abstract InventoryClickStatus allowAllClicks();
 
+    /**
+     * @param event The InventoryClickEvent
+     * @throws MenuManagerNotSetupException If the MenuManager is not setup
+     * @throws MenuManagerException         If an error occurs while handling the menu
+     */
     public abstract void handleMenu(InventoryClickEvent event) throws MenuManagerNotSetupException, MenuManagerException;
 
+    /**
+     * Set the items in the menu
+     */
     public abstract void setMenuItems();
 
+    /**
+     * Open the menu for the player
+     */
     public void open() {
         inventory = Bukkit.createInventory(this, getSlots(), getMenuName());
         this.setMenuItems();
@@ -45,6 +65,9 @@ public abstract class Menu implements InventoryHolder {
         playerMenuUtility.pushMenu(this);
     }
 
+    /**
+     * Send the player back to the previous menu
+     */
     public void back() throws MenuManagerNotSetupException, MenuManagerException {
         MenuManager.openMenu(playerMenuUtility.lastMenu().getClass(), player);
     }
@@ -64,10 +87,17 @@ public abstract class Menu implements InventoryHolder {
         return inventory;
     }
 
+    /**
+     * Fill all free slots in the inventory with the filler glass
+     */
     public void setFillerGlass() {
         setFillerGlass(FILLER_GLASS);
     }
 
+    /**
+     * Fill all free slots in the inventory with the specified ItemStack
+     * @param itemStack The ItemStack to fill the inventory with
+     */
     public void setFillerGlass(ItemStack itemStack) {
         for (int i = 0; i < getSlots(); i++) {
             if (inventory.getItem(i) == null) {
@@ -76,6 +106,10 @@ public abstract class Menu implements InventoryHolder {
         }
     }
 
+    /**
+     * Change the ItemStack used as the filler glass
+     * @param itemStack The ItemStack to set as the filler glass
+     */
     public void changeFillerGlass(ItemStack itemStack) {
         this.FILLER_GLASS = itemStack;
     }

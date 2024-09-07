@@ -141,24 +141,46 @@ public abstract class PaginatedMenu extends Menu {
         return maxItemsPerPage;
     }
 
+    /**
+     * Change all the buttons in the paginated menu
+     * @param leftButton Button to go to the previous page
+     * @param rightButton Button to go to the next page
+     * @param closeButton Button to close the menu
+     */
     public void changeButtons(ItemStack leftButton, ItemStack rightButton, ItemStack closeButton) {
         changeLeftButton(leftButton);
         changeRightButton(rightButton);
         changeCloseButton(closeButton);
     }
 
+    /**
+     * Change the left button in the paginated menu
+     * @param leftButton Button to go to the previous page
+     */
     public void changeLeftButton(ItemStack leftButton) {
         this.leftButton = leftButton;
     }
 
+    /**
+     * Change the right button in the paginated menu
+     * @param rightButton Button to go to the next page
+     */
     public void changeRightButton(ItemStack rightButton) {
         this.rightButton = rightButton;
     }
 
+    /**
+     * Change the close button in the paginated menu
+     * @param closeButton Button to close the menu
+     */
     public void changeCloseButton(ItemStack closeButton) {
         this.closeButton = closeButton;
     }
 
+    /**
+     * Add an object to the next free slot in the inventory
+     * @param object The object (ItemStack) to add to the inventory
+     */
     public void addObjectToNextFreeSlot(Object object) {
         for (int i = 0; i < inventory.getSize()-1; i++) {
             if(inventory.getItem(i) == null || inventory.getItem(i).getType().equals(Material.AIR)) {
