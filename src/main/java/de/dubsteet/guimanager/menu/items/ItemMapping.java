@@ -37,5 +37,20 @@ public class ItemMapping {
         return container.get(ItemKeys.UNIQUE_ID, PersistentDataType.STRING);
     }
 
+    public static void addMenuFunction(ItemStack stack, String menuFunction) {
+        ItemMeta meta = stack.getItemMeta();
+        meta.getPersistentDataContainer().set(ItemKeys.MENU_FUNCTION, PersistentDataType.STRING, menuFunction);
+        stack.setItemMeta(meta);
+    }
+
+    public static String getMenuFunction(ItemStack stack) {
+        ItemMeta meta = stack.getItemMeta();
+        PersistentDataContainer container = meta.getPersistentDataContainer();
+        if (!container.has(ItemKeys.MENU_FUNCTION, PersistentDataType.STRING)) {
+            return null;
+        }
+        return container.get(ItemKeys.MENU_FUNCTION, PersistentDataType.STRING);
+    }
+
 
 }

@@ -3,13 +3,12 @@ package de.dubsteet.guimanager.menu;
 import de.dubsteet.guimanager.exceptions.MenuManagerException;
 import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
 import de.dubsteet.guimanager.menu.enums.InventoryClickStatus;
+import de.dubsteet.guimanager.menu.items.ItemMapping;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 
 public abstract class ConfirmationMenu extends Menu {
-
-    protected String confirmationMessage;
 
     public ConfirmationMenu(PlayerMenuUtility playerMenuUtility) {
         super(playerMenuUtility);
@@ -17,9 +16,13 @@ public abstract class ConfirmationMenu extends Menu {
 
     @Override
     public void setMenuItems() {
-        inventory.setItem(13, getMessageItem());
-        inventory.setItem(30, getConfirmItem());
-        inventory.setItem(32, getCancelItem());
+        ItemStack confirmationItem = getConfirmItem();
+        ItemMapping.addMenuFunction(confirmationItem, "CONFIRM");
+        ItemStack cancelItem = getCancelItem();
+        ItemMapping.addMenuFunction(cancelItem, "CANCEL");
+        inventory.setItem(getMessageSlot(), getMessageItem());
+        inventory.setItem(getConfirmationSlot(), getConfirmItem());
+        inventory.setItem(getCancelSlot(), getCancelItem());
         if(useFillerGlass()) {
             setFillerGlass();
         }
@@ -45,11 +48,40 @@ public abstract class ConfirmationMenu extends Menu {
         }
     }
 
-    //Get ItemStack for the confirmation message
+    /**
+     * @return the slot for the confirmation button
+     */
+    public int getConfirmationSlot() {
+        return 30;
+    }
+
+    /**
+     * @return the slot for the cancel button
+     */
+    public int getCancelSlot() {
+        return 32;
+    }
+
+    /**
+     * @return the slot for the message
+     */
+    public int getMessageSlot() {
+        return 13;
+    }
+
+    /**
+     * @return the ItemStack for the message with the message
+     */
     public abstract ItemStack getMessageItem();
 
+    /**
+     * @return the ItemStack for the confirm button
+     */
     public abstract ItemStack getConfirmItem();
 
+    /**
+     * @return the ItemStack for the cancel button
+     */
     public abstract ItemStack getCancelItem();
 
     public abstract void handleConfirm();
