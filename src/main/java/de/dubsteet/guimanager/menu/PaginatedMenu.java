@@ -1,5 +1,6 @@
 package de.dubsteet.guimanager.menu;
 
+import de.dubsteet.guimanager.menu.items.ItemMapping;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -198,6 +199,7 @@ public abstract class PaginatedMenu extends Menu {
             SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
             skullMeta.setOwningPlayer(player);
             itemStack.setItemMeta(skullMeta);
+            ItemMapping.addUniqueId(itemStack, player.getUniqueId().toString());
             itemStacks.add(itemStack);
         }
         return itemStacks;
