@@ -11,8 +11,9 @@ import java.util.List;
 
 public abstract class CustomItem extends ItemStack {
 
-    public CustomItem(Material material) {
-        super(material);
+    public CustomItem() {
+        super(Material.STONE);
+        this.setType(getCustomItemMaterial());
         setCustomNames();
         assignCustomKeys();
     }
@@ -43,6 +44,9 @@ public abstract class CustomItem extends ItemStack {
     public abstract String getCustomItemName();
 
     public abstract List<String> getCustomLore();
+
+    @NotNull
+    public abstract Material getCustomItemMaterial();
 
     protected abstract boolean isMoveable();
 
