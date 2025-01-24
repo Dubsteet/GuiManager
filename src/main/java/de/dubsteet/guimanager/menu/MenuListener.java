@@ -3,10 +3,12 @@ package de.dubsteet.guimanager.menu;
 import de.dubsteet.guimanager.exceptions.MenuManagerException;
 import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
 import de.dubsteet.guimanager.menu.items.ItemMapping;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.InventoryHolder;
 
 public class MenuListener implements Listener {
@@ -39,11 +41,20 @@ public class MenuListener implements Listener {
     }
 
     @EventHandler
-    public void onMenuClose(InventoryCloseEvent e) {
-        InventoryHolder holder = e.getInventory().getHolder();
+    public void onMenuClose(InventoryCloseEvent event) {
+        InventoryHolder holder = event.getInventory().getHolder();
 
         if (holder instanceof Menu menu) {
             menu.handleMenuClose();
+        }
+    }
+
+    @EventHandler
+    public void onDisconnect(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        PlayerMenuUtility playerMenuUtility = MenuManager.playerMenuUtilityMap.get(player);
+        if (playerMenuUtility != null) {
+            MenuManager.playerMenuUtilityMap.remove(player);
         }
     }
 }
