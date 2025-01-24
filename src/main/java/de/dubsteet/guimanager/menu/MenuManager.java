@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class MenuManager {
 
     //Each Player can have their PlayerMenuUtility object stored in this HashMap
-    private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
+    static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
 
     private static boolean setup = false;
 
