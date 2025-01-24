@@ -1,5 +1,6 @@
 package de.dubsteet.guimanager.menu;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -32,9 +33,10 @@ public class MenuManager {
 
     public static void setup(Server server, Plugin plugin) {
 
+        Bukkit.getLogger().info("Setting up MenuManager");
         registerMenuListener(server, plugin);
         setup = true;
-
+        Bukkit.getLogger().info("MenuManager setup complete");
     }
 
     /**
