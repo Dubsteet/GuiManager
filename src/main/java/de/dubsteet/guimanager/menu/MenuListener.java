@@ -3,6 +3,7 @@ package de.dubsteet.guimanager.menu;
 import de.dubsteet.guimanager.exceptions.MenuManagerException;
 import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
 import de.dubsteet.guimanager.menu.items.ItemMapping;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -41,8 +42,8 @@ public class MenuListener implements Listener {
     }
 
     @EventHandler
-    public void onMenuClose(InventoryCloseEvent e) {
-        InventoryHolder holder = e.getInventory().getHolder();
+    public void onMenuClose(InventoryCloseEvent event) {
+        InventoryHolder holder = event.getInventory().getHolder();
 
         if (holder instanceof Menu menu) {
             menu.handleMenuClose();
@@ -50,10 +51,14 @@ public class MenuListener implements Listener {
     }
 
     @EventHandler
-    public void onDisconnect(PlayerQuitEvent e) {
-        Player player = e.getPlayer();
+    public void onDisconnect(PlayerQuitEvent event) {
+        //DEBUG
+        Player player = event.getPlayer();
+        Bukkit.getLogger().info(player.getName() + " has left the server menu will be removed");
         PlayerMenuUtility playerMenuUtility = MenuManager.playerMenuUtilityMap.get(player);
         if (playerMenuUtility != null) {
+            //DEBUG
+            Bukkit.getLogger().info("Removing menu for " + player.getName());
             MenuManager.playerMenuUtilityMap.remove(player);
         }
     }
