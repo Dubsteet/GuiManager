@@ -33,7 +33,7 @@ Add the dependency:
 <dependency>
     <groupId>com.github.Dubsteet</groupId>
     <artifactId>GuiManager</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
 </dependency>
 ```
 
@@ -49,7 +49,7 @@ repositories {
 Add the dependency:
 ```gradle
 dependencies {
-    implementation 'com.github.Dubsteet:GuiManager:2.0.1'
+    implementation 'com.github.Dubsteet:GuiManager:2.0.2'
 }
 ```
 
@@ -138,4 +138,4 @@ See [Documentation.md](Documentation.md)
 
 ## Version
 
-Current version: **2.0.1**
+Current version: **2.0.2**

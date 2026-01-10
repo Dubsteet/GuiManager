@@ -3,6 +3,7 @@ package de.dubsteet.guimanager.menu;
 import de.dubsteet.guimanager.exceptions.MenuManagerException;
 import de.dubsteet.guimanager.exceptions.MenuManagerNotSetupException;
 import de.dubsteet.guimanager.menu.items.ItemMapping;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,8 +34,9 @@ public class MenuListener implements Listener {
             try {
                 holder.handleMenu(event);
             } catch (MenuManagerNotSetupException menuManagerNotSetupException) {
-                System.out.println("§4THE MENU MANAGER HAS NOT BEEN CONFIGURED. CALL MENUMANAGER.SETUP()");
+                Bukkit.getLogger().severe("THE MENU MANAGER HAS NOT BEEN CONFIGURED. CALL MENUMANAGER.SETUP()");
             } catch (MenuManagerException menuManagerException) {
+                Bukkit.getLogger().severe("Error handling menu: " + menuManagerException.getMessage());
                 menuManagerException.printStackTrace();
             }
         }
