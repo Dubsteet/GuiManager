@@ -21,8 +21,8 @@ public abstract class ConfirmationMenu extends Menu {
         ItemStack cancelItem = getCancelItem();
         ItemMapping.addMenuFunction(cancelItem, "CANCEL");
         inventory.setItem(getMessageSlot(), getMessageItem());
-        inventory.setItem(getConfirmationSlot(), getConfirmItem());
-        inventory.setItem(getCancelSlot(), getCancelItem());
+        inventory.setItem(getConfirmationSlot(), confirmationItem);
+        inventory.setItem(getCancelSlot(), cancelItem);
         if(useFillerGlass()) {
             setFillerGlass();
         }

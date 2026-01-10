@@ -214,6 +214,7 @@ public abstract class PaginatedMenu extends Menu {
             skullMeta.setOwningPlayer(player);
             skullMeta.setLore(lore);
             itemStack.setItemMeta(skullMeta);
+            ItemMapping.addUniqueId(itemStack, player.getUniqueId().toString());
             itemStacks.add(itemStack);
         }
         return itemStacks;

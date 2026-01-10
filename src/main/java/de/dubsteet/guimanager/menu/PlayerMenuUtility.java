@@ -72,10 +72,14 @@ public class PlayerMenuUtility {
 
     /**
      * @return Get the previous menu that was opened for the player
+     * @throws IllegalStateException if there is no previous menu in history
      */
     public Menu lastMenu() {
-        this.history.pop(); //Makes back() work for some reason
-        return this.history.pop();
+        if (this.history.size() < 2) {
+            throw new IllegalStateException("No previous menu in history");
+        }
+        this.history.pop(); // Remove current menu
+        return this.history.pop(); // Return previous menu
     }
 
     public void pushMenu(Menu menu) {
