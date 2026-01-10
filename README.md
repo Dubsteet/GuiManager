@@ -89,7 +89,7 @@ public class ExampleMenu extends Menu {
 
     @Override
     public InventoryClickStatus allowAllClicks() {
-        return InventoryClickStatus.CANCEL_ALL;
+        return InventoryClickStatus.DENIED;
     }
 
     @Override
